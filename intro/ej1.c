@@ -5,14 +5,16 @@ Donde c es el capital inicial, x es la tasa de interes y
 n es el numero de anios a calcular.*/
 
 #include <stdio.h>
-#define TRUE 1
-#define FALSE 0
+#include <stdbool.h>
+
 #define EXIT_SUCCESS 0
 #define EXIT_FAIL -1
 
+#define MIN_VALUE 0
+
 float in_data(void);
 float n_natural_power(float base, int n);
-int data_invalid(float data);
+bool data_invalid(float data);
 
 int main(void){
     float init_cap, interest, final_cap;
@@ -40,10 +42,7 @@ int main(void){
 float in_data(void){
     float data;
     scanf("%f", &data);
-    if(data < 0)
-        return EXIT_FAIL;
-    else 
-        return data;
+    return data;
 }
 
 float n_natural_power(float base, int n){
@@ -55,10 +54,10 @@ float n_natural_power(float base, int n){
     return power;
 }
 
-int data_invalid(float data){
-    if(data <= 0){
+bool data_invalid(float data){
+    if(data <= MIN_VALUE){
         printf("Datos invalidos\nCERRANDO PROGRAMA\n");
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
