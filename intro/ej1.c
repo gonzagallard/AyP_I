@@ -6,7 +6,7 @@ n es el numero de anios a calcular.*/
 
 #include <stdio.h>
 #define EXIT_SUCCESS 0
-#define EXIT_FAIL 1
+#define EXIT_FAIL -1
 
 
 float in_data(void){
