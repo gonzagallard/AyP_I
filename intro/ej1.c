@@ -10,16 +10,17 @@ n es el numero de anios a calcular.*/
 #define EXIT_SUCCESS 0
 #define EXIT_FAIL -1
 
-#define MIN_VALUE 0
+#define MIN_VALUE 0.0
 
-float in_data(void);
-float n_natural_power(float base, int n);
-bool data_invalid(float data);
+double in_data(void);
+double n_natural_power(double base, unsigned int n);
+bool data_invalid(double data);
+double final_capital(double init_cap, short interest, unsigned char years);
 
 int main(void){
-    float init_cap, interest, final_cap;
+    double init_cap, interest;
     int years;
-    init_cap = interest = years = final_cap = 0;
+    init_cap = interest = years = 0;
 
     printf("Ingrese el capital inicial:\t");
     if(data_invalid(init_cap = in_data()))
@@ -33,20 +34,19 @@ int main(void){
     if(data_invalid(years = in_data()))
         return EXIT_FAIL;
 
-    final_cap = init_cap*n_natural_power(1+interest/100 , years);
-    printf("El capital a cobrar es de:\t %.3f \nFIN PROGRAMA\n", final_cap);
+    printf("El capital a cobrar es de:\t %.3f \nFIN PROGRAMA\n",final_capital(init_cap, interest, years));
 
     return EXIT_SUCCESS;
 }
 
-float in_data(void){
-    float data;
+double in_data(void){
+    double data;
     scanf("%f", &data);
     return data;
 }
 
-float n_natural_power(float base, int n){
-    float power = base;
+double n_natural_power(double base, unsigned int n){
+    bouble power = base;
 
     for(size_t i = 1 ; i < n ; i++)
         power *= base;
@@ -54,10 +54,15 @@ float n_natural_power(float base, int n){
     return power;
 }
 
-bool data_invalid(float data){
+bool data_invalid(double data){
     if(data <= MIN_VALUE){
         printf("Datos invalidos\nCERRANDO PROGRAMA\n");
         return true;
     }
     return false;
+}
+
+double final_capital(double init_cap, short interest, unsigned int years){
+ return init_cap*n_natural_power(1+interest/100.0 ,            years);
+
 }
