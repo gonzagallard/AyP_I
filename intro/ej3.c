@@ -11,7 +11,6 @@ float in_data(void);
 bool data_invalid(float data);
 float celcius_to_Fahrenheit(float celcius);
 
-
 int main(void){
     float celcius = 0;
 
@@ -39,5 +38,5 @@ bool data_invalid(float data){
 }
 
 float celcius_to_Fahrenheit(float celcius){
- return (float)9/5*celcius + 32;
+    return (float)9/5*celcius + 32;
 }

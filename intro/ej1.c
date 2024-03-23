@@ -19,7 +19,7 @@ double final_capital(double init_cap, short interest, unsigned char years);
 
 int main(void){
     double init_cap, interest;
-    int years;
+    unsigned char years;
     init_cap = interest = years = 0;
 
     printf("Ingrese el capital inicial:\t");
@@ -34,19 +34,20 @@ int main(void){
     if(data_invalid(years = in_data()))
         return EXIT_FAIL;
 
-    printf("El capital a cobrar es de:\t %.3f \nFIN PROGRAMA\n",final_capital(init_cap, interest, years));
+    printf("El capital a cobrar es de:\t %.3f \nFIN PROGRAMA\n"
+            ,final_capital(init_cap, interest, years));
 
     return EXIT_SUCCESS;
 }
 
 double in_data(void){
     double data;
-    scanf("%f", &data);
+    scanf("%lf", &data);
     return data;
 }
 
 double n_natural_power(double base, unsigned int n){
-    bouble power = base;
+    double power = base;
 
     for(size_t i = 1 ; i < n ; i++)
         power *= base;
@@ -62,7 +63,6 @@ bool data_invalid(double data){
     return false;
 }
 
-double final_capital(double init_cap, short interest, unsigned int years){
- return init_cap*n_natural_power(1+interest/100.0 ,            years);
-
+double final_capital(double init_cap, short interest, unsigned char years){
+    return init_cap * n_natural_power(1 + interest/100.0 ,years);
 }

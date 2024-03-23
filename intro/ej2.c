@@ -12,7 +12,6 @@ float in_data(void);
 bool data_invalid(float data);
 float fahrenheit_to_celcius(float farh);
 
-
 int main(void){
     float farenh = 0;
 
@@ -20,7 +19,7 @@ int main(void){
     if(data_invalid(farenh = in_data()))
         return EXIT_FAIL;
 
-    printf("%.3f F son %.3f C\nFIN PROGRAMA\n", farenh,fahrenheit_to_celcius(farenh));
+    printf("%.3f F son %.3f C\nFIN PROGRAMA\n",farenh, fahrenheit_to_celcius(farenh));
 
     return EXIT_SUCCESS;
 }

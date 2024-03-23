@@ -9,10 +9,11 @@
 
 int in_data(void);
 bool data_invalid(int data);
+int time_to_seconds(int hour, int min, int seg);
 
 int main(void){
-    int hour, min, seg_init, seg_end;
-    hour = min = seg_init = seg_end = 0;
+    int hour, min, seg ;
+    hour = min = seg = 0;
 
     printf("Ingrese las horas: \t");
     if(data_invalid(hour = in_data()))
@@ -23,12 +24,12 @@ int main(void){
         return EXIT_FAIL;
 
     printf("Ingrese las segundos: \t");
-    if(data_invalid(seg_init = in_data()))
+    if(data_invalid(seg = in_data()))
         return EXIT_FAIL;
     
-    seg_end = hour * 3600 + min * 60 + seg_init;
+    seg = hour * 3600 + min * 60 + seg;
     printf("%d horas, %d minutos, %d segundos ==>  %d segundos totales\nFIN PROGRAMA\n"
-            ,hour, min, seg_init, seg_end);
+            ,hour, min, seg, time_to_seconds(hour, min, seg));
 
     return EXIT_SUCCESS;
 }
@@ -45,4 +46,8 @@ bool data_invalid(int data){
         return true;
     }
     return false;
+}
+
+int time_to_seconds(int hour, int min, int seg){
+    return hour * 3600 + min * 60 + seg;
 }
