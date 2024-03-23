@@ -8,10 +8,22 @@
 implementar una funcion que calcule la raiz cuadrada de n segun este metodo*/
 
 #include <stdio.h>
+#define ERROR   0.001   
+#define RAIZ    5.0
 
-double raiz_cuadrada(double n);
+double sqrt_of(double n);
 
 int main(void){
-
+    printf("La raiz de %.3f es : %.3f\n", RAIZ ,sqrt_of(RAIZ));
     return 0;
+}
+
+double sqrt_of(double n){
+    double x = n, y = 1;
+    while(1){
+        if((x - y) < ERROR)
+            return x;
+        x = (x + y)/2;
+        y = n / x;
+    }
 }
