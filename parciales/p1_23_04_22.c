@@ -51,6 +51,24 @@ void left_trim(char cadena[]){
         cadena[i] = cadena_aux[i];
     cadena[i] = '\0';
 }
+//CORREGIDO_INIT***************************************************************************
+size_t _cant_espacios(const char cadena[]){
+    size_t i;
+    for(i = 0; cadena[i] == ' '; i++);
+    return i;
+}
+
+void left_trim_CORREGIDO(char cadena[]){
+    size_t n = _cant_espacios(cadena);
+
+    size_t i;
+
+    for(i = 0; cadena[i + n] != '\0' ; i++){ // La condicion de corte correcta del for es cadena[i + n] != '\0' y no cadena[i] != '\0'. 
+        cadena[i] = cadena[i + n];          //no cambia mucho pero es mas eficiente y consecuente con agregar el '\0' del despues.
+    }
+    cadena[i] = '\0';
+}
+//CORREGIDO_FIN***************************************************************************
 
 bool es_triangular_superior(size_t n, float matriz[n][n]){
     for(size_t j = 0 ; j < n ; j++){
@@ -64,6 +82,18 @@ bool es_triangular_superior(size_t n, float matriz[n][n]){
     return true;
 }
 
+bool es_triangular_superior_CORREGIDO(size_t n, float matriz[n][n]){
+    for(size_t i = 1; i < n; i++){
+        for(size_t j = 0; j < n && j < i; j++){
+            if(matriz[i][j] != 0){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
 int main(void){
     char ejemplo[MAX_CADENA] = "         hola";
     printf("%s : cadena original\n",ejemplo);
@@ -73,7 +103,7 @@ int main(void){
     float matriz[N][N] = {
         {1.0,0 ,3},
         {0  ,1 ,4},
-        {0  ,0 ,1}
+        {0  ,0 ,1},
     };
 
     if(es_triangular_superior(N,matriz))
@@ -85,7 +115,7 @@ int main(void){
     char data_in[MAX_CADENA];
 
     printf("ingrese un numero:\t");
-    if(fgets(data_in, MAX_CADENA, stdin) == NULL){
+    if(fgets(data_in, MAX_CADENA, stdin) == NULL){  //No es necesario verificar 
         fprintf(stderr,"Error en la entrada\n");
         return 1;
     }
