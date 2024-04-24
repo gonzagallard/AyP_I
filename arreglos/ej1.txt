@@ -1,0 +1,22 @@
+Responder verdadero o falso. En caso de respuestas falsas, explique el por qué.
+
+Un arreglo puede almacenar diferentes tipos de valores.     
+        FALSO la delcaracion solo es de un tipo
+
+
+En la expresión a[i], siendo a un arreglo, el subíndice i puede ser de tipo double.
+        FALSO, se tratan de indices por lo q deben ser de tipo size_t
+
+
+Si hay menos inicializadores en la lista de inicializadores del arreglo que elementos en el arreglo,
+ C automáticamente inicializa los elementos restantes con el último valor en la lista de inicializadores.
+        FALSO, C inicialisa el resto de los elementos a 0
+
+Es un error si una lista de inicializadores contiene más inicializadores que la cantidad de elementos que hay 
+en el arreglo.
+    verdadero, porque se puede acceder a lugares en memoria prohibidos
+
+Si se pasa un elemento a una función, en la forma a[i], y se modifica ese valor en el interior de la función,
+ el arreglo contendrá el valor modificado.
+        Verdadero, se le pasa a la funcion un puntero que apunta al arreglo.
+        
