@@ -26,17 +26,25 @@ int main(void){
     
     float temp_mensuales[12];
     char aux[MAX];
-    i = 0;
+
     for(i=0 ; i<12 ;i++){
         fgets(aux,MAX,stdin);
         temp_mensuales[i] = atoi(aux);
+    }
 
+    int puntajes[6]={1,2,3,4,5};
+    for(i=0 ; i<5 ; i++){
+        printf("%d\n",puntajes[i]);
+    }
 
-
-
-
-
-
+    float salarios[20]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    for(i=0 ; i<20 ; i++){
+        salarios[i] += salarios[i]*0.3;
+    }
+    for(i=0 ; i<10 ; i++){
+        printf("%.2f\t",salarios[i]);
+    }
+    putchar('\n');
 
     return 0;
 }
