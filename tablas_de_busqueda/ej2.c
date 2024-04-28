@@ -19,12 +19,11 @@ y almacene la clase del mismo en una variable del tipo espectral_t. Luego, impri
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_ARR 50
-#define MAX_NUM_CLASS 7
+#define MAX_ARR 50 
 #define MSG_ERR_INVALID_TEMP "ERROR, Temperatura no valida\n"
 
-typedef enum{O,B,A,F,G,K,M}espectral_t;
-const char color_class[][MAX_ARR]={
+typedef enum{O,B,A,F,G,K,M,CLASS_NUM}espectral_t;
+char const*const color_class[CLASS_NUM]={
     [O] = "Azul",
     [B] = "Blanco azulado",
     [A] = "Blanco",
@@ -34,10 +33,32 @@ const char color_class[][MAX_ARR]={
     [M] = "Rojo",
 };
 
+espectral_t give_class(const int data){
+    espectral_t clase;
+    if(data >= 1700 && data<= 3200)
+        clase = M;
+    if(data > 3200 && data<= 4600)
+        clase = K;
+    if(data > 4600 && data<= 5700)
+        clase = G;
+    if(data > 5700 && data<= 7100)
+        clase = F;
+    if(data > 7100 && data<= 9600)
+        clase = A;
+    if(data > 9600 && data<= 28000)
+        clase = B;
+    if(data > 28000 && data<= 50000)
+        clase = O;
+    return clase;
+}
+
+const char *name_class(espectral_t class){
+    return color_class[class];
+}
+
 int main(void){
     char data[MAX_ARR];
     int data_int;
-    espectral_t clase;
     fgets(data,MAX_ARR,stdin);
 
     data_int = atoi(data);
@@ -46,22 +67,9 @@ int main(void){
         return 1;
     };
 
-    if(data_int >= 1700 && data_int <= 3200)
-        clase = M;
-    if(data_int > 3200 && data_int <= 4600)
-        clase = K;
-    if(data_int > 4600 && data_int <= 5700)
-        clase = G;
-    if(data_int > 5700 && data_int <= 7100)
-        clase = F;
-    if(data_int > 7100 && data_int <= 9600)
-        clase = A;
-    if(data_int > 9600 && data_int <= 28000)
-        clase = B;
-    if(data_int > 28000 && data_int <= 50000)
-        clase = O;
+    espectral_t clase = give_class(data_int);
 
-    printf("El color de la estrella es: %s\n",color_class[clase]);
+    printf("El color de la estrella es: %s\n",name_class(clase));
 
     return 0;
 }
