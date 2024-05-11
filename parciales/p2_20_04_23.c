@@ -147,6 +147,14 @@ carta_t **tirar_reyes(size_t *n) {
 
     return v;
 }
+// Esta es una posible implementaciÃ³n, poco realista, mazo infinito aleatorio
+carta_t *sacar_carta_del_mazo() {
+    carta_t *c = malloc(sizeof(carta_t));
+    if(c == NULL) return NULL;
+    c->palo = rand() % 4;
+    c->valor = rand() % 12 + 1;
+    return c;
+}
 
 
 int main(void){
@@ -172,5 +180,19 @@ int main(void){
     printf("largo\t%ld\n",strlen(cadSola));
 
     free(cadSola);
+
+       // EJ3
+    /*
+    char *palos[] = {"oro", "copa", "espada", "basto"};
+    size_t n;
+    carta_t **cartas = tirar_reyes(&n);
+    for(size_t i = 0; i < n; i++)
+        printf("%d %s\n", cartas[i]->valor, palos[cartas[i]->palo]);
+
+    for(size_t i = 0; i < n; i++)
+        free(cartas[i]);
+    free(cartas);
+    */
+
     return 0;
 }
